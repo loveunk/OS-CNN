@@ -118,15 +118,15 @@ class OS_CNN_easy_use():
             
             if eval_condition(i,self.print_result_every_x_epoch):
                 for param_group in optimizer.param_groups:
-                    print('epoch =',i, 'lr = ', param_group['lr'])
+                    print('epoch=',i, 'lr=', param_group['lr'], end="\t")
                 torch_OS_CNN.eval()
                 acc_train = eval_model(torch_OS_CNN, train_loader)
                 acc_test = eval_model(torch_OS_CNN, test_loader)
                 torch_OS_CNN.train()
                 print('train_acc=\t', acc_train, '\t test_acc=\t', acc_test, '\t loss=\t', output.item())
                 sentence = 'train_acc=\t'+str(acc_train)+ '\t test_acc=\t'+str(acc_test) 
-                print('log saved at:')
-                save_to_log(sentence,self.Result_log_folder, self.dataset_name)
+                #print('log saved at:')
+                #save_to_log(sentence,self.Result_log_folder, self.dataset_name)
                 torch.save(torch_OS_CNN.state_dict(), self.model_save_path)
          
         torch.save(torch_OS_CNN.state_dict(), self.model_save_path)
